@@ -19,4 +19,12 @@ public class ExamService {
 
         exam.decreaseRemainUsers();
     }
+
+    @Transactional
+    public void decreaseUsers2(Long examId) {
+        Exam exam = examRepository.findById(examId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 시험입니다."));
+
+        exam.decreaseRemainUsers();
+    }
 }
