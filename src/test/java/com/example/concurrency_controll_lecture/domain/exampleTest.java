@@ -39,7 +39,7 @@ public class exampleTest {
         for(int i = 0; i < threadCount; i ++) {
             executor.submit(() -> {
                 try {
-                    examService.decreaseUsers(exam.getId());
+                    examService.decreaseUsersByPessimisticLock(exam.getId());
                 } finally {
                     latch.countDown();
                 }
@@ -68,7 +68,7 @@ public class exampleTest {
         for(int i = 0; i < threadCount; i ++) {
             executor.submit(() -> {
                 try {
-                    examLockService.decreaseUsersBySynchronized(exam.getId());
+                    examLockService.decreaseUsersByReentrantLock(exam.getId());
                 } finally {
                     latch.countDown();
                 }
